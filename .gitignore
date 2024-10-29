@@ -1,0 +1,10 @@
+# 但不忽略.gitignore文件本身
+!.gitignore
+
+# 也不忽略任何.py文件
+!*.py
+
+*.xlsx
+*.xml
+
+*/
