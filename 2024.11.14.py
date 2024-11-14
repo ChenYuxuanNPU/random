@@ -15,7 +15,7 @@ data_list = df.values.tolist()
 dict = {}
 
 for row in data_list:
-    dict[row[0]] = row[1:]
+    dict[row[0]] = [str(item) for item in row[1:]]
 
 print(dict)
 
