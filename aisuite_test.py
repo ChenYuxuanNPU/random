@@ -1,4 +1,9 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import aisuite as ai
+
 client = ai.Client()
 
 models = ["openai:gpt-4o", "anthropic:claude-3-5-sonnet-20240620"]
