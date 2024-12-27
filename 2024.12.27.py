@@ -49,4 +49,10 @@ for i in range(len(excel_output)):
             ws.append(["","","","",""] + list(excel_output[i]))
 
 # 保存工作簿到文件
-workbook.save("output.xlsx")
+# workbook.save("output.xlsx")
+
+names = ["某些姓名"]
+
+for name in names:
+    if name not in [a[0] for a in result]:
+        print(name)
