@@ -1,7 +1,6 @@
 import sqlite3
-import copy
+
 import openpyxl
-from openpyxl import Workbook
 
 
 def del_tuple_in_list(data: list) -> list:
@@ -65,3 +64,34 @@ def disconnect_database(conn) -> None:
     conn.close()
 
     return None
+
+
+def read_xlsx_to_list(file_path, sheet_name=None):
+    # 打开工作簿
+    workbook = openpyxl.load_workbook(file_path)
+
+    # 如果未指定工作表名称，则使用第一个工作表
+    if sheet_name is None:
+        sheet = workbook.active
+    else:
+        sheet = workbook[sheet_name]
+
+    # 读取数据并存储到二维列表中
+    data = []
+    for row in sheet.iter_rows(values_only=True):
+        data.append(row)
+
+    return data
+
+
+def save_excel(two_dimension_list: list[list or tuple], excel_name: str = "output"):
+    # 读取 Excel 文件
+    workbook = openpyxl.Workbook()
+
+    # 获取活动的工作表
+    ws = workbook.active
+
+    for item in two_dimension_list:
+        ws.append(item)
+
+    workbook.save(f"{excel_name}.xlsx")
