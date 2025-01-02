@@ -148,3 +148,23 @@ def get_age_from_citizen_id(citizen_id: str, year: str = None, month: int = 9, d
         print(text=f"{e}:{citizen_id}")
         return -3
 
+
+def get_educational_background_order() -> dict:
+    """
+    学历排序
+    :return:
+    """
+
+    return {
+        '博士研究生': 1, '硕士研究生': 2, '本科': 3, "专科": 4, "高中": 5, "高中及以下": 6,
+        "中师": 7, "中专（非师范）": 8, "中专": 9, "初中": 10, None: 11
+    }
+
+
+def get_period_order() -> dict:
+    """
+    学段排序
+    :return:
+    """
+
+    return {'高中': 1, '初中': 2, '小学': 3, '幼儿园': 4, '中职': 5, "其他": 6, None: 7,}
