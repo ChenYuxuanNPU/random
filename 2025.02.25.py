@@ -535,7 +535,6 @@ def output_excel_1(title: list, data: list, file_name: str, area_name: str):
 
     name_list = []
     for data_row in data:
-
         name_list.append(data_row[3])
 
         ws.append(list(map(str, data_row)))
@@ -606,7 +605,6 @@ if __name__ == '__main__':
     count = 1
     # people_count = 0
     for school, data in result_all.items():
-
         excel_name = school
         area_name = data[0][-5]
 
@@ -624,4 +622,3 @@ if __name__ == '__main__':
     # print(people_count)
 
     # print(execute_sql_sentence(sentence=f'select count(*) from teacher_data_1 where "采集年份" == "2024"'))
-
