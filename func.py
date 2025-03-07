@@ -32,6 +32,7 @@ def execute_sql_sentence(sentence: str, ) -> list:
     try:
         c.execute(sentence)
         result = c.fetchall()
+        conn.commit()
 
     except Exception as e:
         print(e)
