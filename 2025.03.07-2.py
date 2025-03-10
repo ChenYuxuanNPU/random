@@ -62,19 +62,20 @@ for school in school_list:
 
         if str(school_id) in id_list_for_9895211["985"]:
             temp[1] += 1
+            count_others = + 1
 
-        if school_id in id_list_for_9895211["211"]:
+        elif school_id in id_list_for_9895211["211"]:
             temp[3] += 1
+            count_others = + 1
 
-        if school_id in top_15_normal_id:
+        elif school_id in top_15_normal_id:
             temp[5] += 1
-
-        if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-            count_others += 1
+            count_others = + 1
 
     temp[7] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[2] = f"{str(round(temp[1] / people_sum, 4) * 100)}%"
     temp[4] = f"{str(round(temp[3] / people_sum, 4) * 100)}%"
     temp[6] = f"{str(round(temp[5] / people_sum, 4) * 100)}%"
@@ -91,19 +92,20 @@ for school in school_list:
     for s in school_list:
         if s in name_list_985:
             temp[9] += 1
+            count_others += 1
 
-        if s in name_list_211:
+        elif s in name_list_211:
             temp[11] += 1
+            count_others += 1
 
-        if s in name_list_top_15_normal:
+        elif s in name_list_top_15_normal:
             temp[13] += 1
-
-        if s in name_list_211 or s in name_list_top_15_normal:
             count_others += 1
 
     temp[15] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[10] = f"{round(temp[9] / people_sum, 4) * 100}%"
     temp[12] = f"{round(temp[11] / people_sum, 4) * 100}%"
     temp[14] = f"{round(temp[13] / people_sum, 4) * 100}%"
@@ -133,19 +135,20 @@ for school in school_list:
 
         if str(school_id) in id_list_for_9895211["985"]:
             temp[1] += 1
+            count_others = + 1
 
-        if school_id in id_list_for_9895211["211"]:
+        elif school_id in id_list_for_9895211["211"]:
             temp[3] += 1
+            count_others = + 1
 
-        if school_id in top_15_normal_id:
+        elif school_id in top_15_normal_id:
             temp[5] += 1
-
-        if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-            count_others += 1
+            count_others = + 1
 
     temp[7] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[2] = f"{str(round(temp[1] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[4] = f"{str(round(temp[3] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[6] = f"{str(round(temp[5] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
@@ -162,19 +165,20 @@ for school in school_list:
     for s in school_list:
         if s in name_list_985:
             temp[9] += 1
+            count_others += 1
 
-        if s in name_list_211:
+        elif s in name_list_211:
             temp[11] += 1
+            count_others += 1
 
-        if s in name_list_top_15_normal:
+        elif s in name_list_top_15_normal:
             temp[13] += 1
-
-        if s in name_list_211 or s in name_list_top_15_normal:
             count_others += 1
 
     temp[15] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[10] = f"{round(temp[9] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[12] = f"{round(temp[11] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[14] = f"{round(temp[13] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
@@ -204,19 +208,20 @@ for school in school_list:
 
         if str(school_id) in id_list_for_9895211["985"]:
             temp[1] += 1
+            count_others = + 1
 
-        if school_id in id_list_for_9895211["211"]:
+        elif school_id in id_list_for_9895211["211"]:
             temp[3] += 1
+            count_others = + 1
 
-        if school_id in top_15_normal_id:
+        elif school_id in top_15_normal_id:
             temp[5] += 1
-
-        if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-            count_others += 1
+            count_others = + 1
 
     temp[7] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[2] = f"{str(round(temp[1] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[4] = f"{str(round(temp[3] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[6] = f"{str(round(temp[5] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
@@ -233,19 +238,20 @@ for school in school_list:
     for s in school_list:
         if s in name_list_985:
             temp[9] += 1
+            count_others += 1
 
-        if s in name_list_211:
+        elif s in name_list_211:
             temp[11] += 1
+            count_others += 1
 
-        if s in name_list_top_15_normal:
+        elif s in name_list_top_15_normal:
             temp[13] += 1
-
-        if s in name_list_211 or s in name_list_top_15_normal:
             count_others += 1
 
     temp[15] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[10] = f"{round(temp[9] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[12] = f"{round(temp[11] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[14] = f"{round(temp[13] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
@@ -275,19 +281,20 @@ for school in school_list:
 
         if str(school_id) in id_list_for_9895211["985"]:
             temp[1] += 1
+            count_others = + 1
 
-        if school_id in id_list_for_9895211["211"]:
+        elif school_id in id_list_for_9895211["211"]:
             temp[3] += 1
+            count_others = + 1
 
-        if school_id in top_15_normal_id:
+        elif school_id in top_15_normal_id:
             temp[5] += 1
-
-        if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-            count_others += 1
+            count_others = + 1
 
     temp[7] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[2] = f"{str(round(temp[1] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[4] = f"{str(round(temp[3] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
     temp[6] = f"{str(round(temp[5] / people_sum, 4) * 100) if people_sum != 0 else 0}%"
@@ -304,19 +311,20 @@ for school in school_list:
     for s in school_list:
         if s in name_list_985:
             temp[9] += 1
+            count_others += 1
 
-        if s in name_list_211:
+        elif s in name_list_211:
             temp[11] += 1
+            count_others += 1
 
-        if s in name_list_top_15_normal:
+        elif s in name_list_top_15_normal:
             temp[13] += 1
-
-        if s in name_list_211 or s in name_list_top_15_normal:
             count_others += 1
 
     temp[15] = people_sum - count_others
 
     # 计算百分比
+    count_others = 0
     temp[10] = f"{round(temp[9] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[12] = f"{round(temp[11] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
     temp[14] = f"{round(temp[13] / people_sum, 4) * 100 if people_sum != 0 else 0}%"
@@ -326,5 +334,5 @@ for school in school_list:
 
 save_excel(
     two_dimension_list=output,
-    excel_name="111"
+    excel_name="学校数据"
 )

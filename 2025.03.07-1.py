@@ -52,19 +52,20 @@ for school_id in id_list:
 
     if str(school_id) in id_list_for_9895211["985"]:
         temp[1] += 1
+        count_others = + 1
 
-    if school_id in id_list_for_9895211["211"]:
+    elif school_id in id_list_for_9895211["211"]:
         temp[3] += 1
+        count_others = + 1
 
-    if school_id in top_15_normal_id:
+    elif school_id in top_15_normal_id:
         temp[5] += 1
-
-    if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-        count_others += 1
+        count_others = + 1
 
 temp[7] = people_sum - count_others
 
 # 计算百分比
+count_others = 0
 temp[2] = f"{round(temp[1] / people_sum, 4) * 100}%"
 temp[4] = f"{round(temp[3] / people_sum, 4) * 100}%"
 temp[6] = f"{round(temp[5] / people_sum, 4) * 100}%"
@@ -81,14 +82,14 @@ count_others = 0
 for s in school_list:
     if s in name_list_985:
         temp[9] += 1
+        count_others += 1
 
-    if s in name_list_211:
+    elif s in name_list_211:
         temp[11] += 1
+        count_others += 1
 
-    if s in name_list_top_15_normal:
+    elif s in name_list_top_15_normal:
         temp[13] += 1
-
-    if s in name_list_211 or s in name_list_top_15_normal:
         count_others += 1
 
 temp[15] = people_sum - count_others
@@ -124,15 +125,15 @@ for school_id in id_list:
 
     if str(school_id) in id_list_for_9895211["985"]:
         temp[1] += 1
+        count_others = + 1
 
-    if school_id in id_list_for_9895211["211"]:
+    elif school_id in id_list_for_9895211["211"]:
         temp[3] += 1
+        count_others = + 1
 
-    if school_id in top_15_normal_id:
+    elif school_id in top_15_normal_id:
         temp[5] += 1
-
-    if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-        count_others += 1
+        count_others = + 1
 
 temp[7] = people_sum - count_others
 
@@ -151,18 +152,16 @@ school_list = del_tuple_in_list(
 count_others = 0
 # 统计985211等
 for s in school_list:
-
     if s in name_list_985:
-
         temp[9] += 1
+        count_others += 1
 
-    if s in name_list_211:
+    elif s in name_list_211:
         temp[11] += 1
+        count_others += 1
 
-    if s in name_list_top_15_normal:
+    elif s in name_list_top_15_normal:
         temp[13] += 1
-
-    if s in name_list_211 or s in name_list_top_15_normal:
         count_others += 1
 
 temp[15] = people_sum - count_others
@@ -198,15 +197,15 @@ for school_id in id_list:
 
     if str(school_id) in id_list_for_9895211["985"]:
         temp[1] += 1
+        count_others = + 1
 
-    if school_id in id_list_for_9895211["211"]:
+    elif school_id in id_list_for_9895211["211"]:
         temp[3] += 1
+        count_others = + 1
 
-    if school_id in top_15_normal_id:
+    elif school_id in top_15_normal_id:
         temp[5] += 1
-
-    if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-        count_others += 1
+        count_others = + 1
 
 temp[7] = people_sum - count_others
 
@@ -227,14 +226,14 @@ count_others = 0
 for s in school_list:
     if s in name_list_985:
         temp[9] += 1
+        count_others += 1
 
-    if s in name_list_211:
+    elif s in name_list_211:
         temp[11] += 1
+        count_others += 1
 
-    if s in name_list_top_15_normal:
+    elif s in name_list_top_15_normal:
         temp[13] += 1
-
-    if s in name_list_211 or s in name_list_top_15_normal:
         count_others += 1
 
 temp[15] = people_sum - count_others
@@ -270,15 +269,15 @@ for school_id in id_list:
 
     if str(school_id) in id_list_for_9895211["985"]:
         temp[1] += 1
+        count_others = + 1
 
-    if school_id in id_list_for_9895211["211"]:
+    elif school_id in id_list_for_9895211["211"]:
         temp[3] += 1
+        count_others = + 1
 
-    if school_id in top_15_normal_id:
+    elif school_id in top_15_normal_id:
         temp[5] += 1
-
-    if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-        count_others += 1
+        count_others = + 1
 
 temp[7] = people_sum - count_others
 
@@ -299,14 +298,14 @@ count_others = 0
 for s in school_list:
     if s in name_list_985:
         temp[9] += 1
+        count_others += 1
 
-    if s in name_list_211:
+    elif s in name_list_211:
         temp[11] += 1
+        count_others += 1
 
-    if s in name_list_top_15_normal:
+    elif s in name_list_top_15_normal:
         temp[13] += 1
-
-    if s in name_list_211 or s in name_list_top_15_normal:
         count_others += 1
 
 temp[15] = people_sum - count_others
@@ -342,15 +341,15 @@ for school_id in id_list:
 
     if str(school_id) in id_list_for_9895211["985"]:
         temp[1] += 1
+        count_others = + 1
 
-    if school_id in id_list_for_9895211["211"]:
+    elif school_id in id_list_for_9895211["211"]:
         temp[3] += 1
+        count_others = + 1
 
-    if school_id in top_15_normal_id:
+    elif school_id in top_15_normal_id:
         temp[5] += 1
-
-    if school_id in top_15_normal_id or school_id in id_list_for_9895211["211"]:
-        count_others += 1
+        count_others = + 1
 
 temp[7] = people_sum - count_others
 
@@ -371,14 +370,14 @@ count_others = 0
 for s in school_list:
     if s in name_list_985:
         temp[9] += 1
+        count_others += 1
 
-    if s in name_list_211:
+    elif s in name_list_211:
         temp[11] += 1
+        count_others += 1
 
-    if s in name_list_top_15_normal:
+    elif s in name_list_top_15_normal:
         temp[13] += 1
-
-    if s in name_list_211 or s in name_list_top_15_normal:
         count_others += 1
 
 temp[15] = people_sum - count_others
