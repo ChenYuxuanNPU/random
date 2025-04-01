@@ -1,11 +1,17 @@
 from func import *
 
 info_list = execute_sql_sentence(
-    sentence=f'select "校名","姓名","主教学科","兼教学科","任教学段" from teacher_data_0 where "采集年份" == "2024"'
+    sentence=f'select "校名","姓名","主教学科","兼教学科","任教学段","是" from teacher_data_0 where "采集年份" == "2024"'
 )
 
-output_0 = [["学校", "姓名", "主教学科", "兼教学科", "任教学段"]]
-output_1 = [["学校", "姓名", "主教学科", "兼教学科", "任教学段"]]
+info_list.extend(
+    execute_sql_sentence(
+        sentence=f'select "校名","姓名","主教学科","无","任教学段","否" from teacher_data_1 where "采集年份" == "2024"'
+    )
+)
+
+output_0 = [["学校", "姓名", "主教学科", "兼教学科", "任教学段", "是否在编"]]
+output_1 = [["学校", "姓名", "主教学科", "兼教学科", "任教学段", "是否在编"]]
 
 for item in info_list:
     if item[2] in ["体育", "音乐", "美术"]:
