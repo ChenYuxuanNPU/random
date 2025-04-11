@@ -1,4 +1,5 @@
 import sqlite3
+import re
 from datetime import datetime
 
 import openpyxl
@@ -69,20 +70,23 @@ def disconnect_database(conn) -> None:
     return None
 
 
+def remove_zero_width_chars(text):
+    # 移除所有零宽字符（包括\u200c, \u200d, \u200e, \u200f, \uFEFF等）
+    return re.sub(r'[\u200c\u200d\u200e\u200f\uFEFF]', '', text)
+
+
 def read_xlsx_to_list(file_path, sheet_name=None):
-    # 打开工作簿
     workbook = openpyxl.load_workbook(file_path)
+    sheet = workbook.active if sheet_name is None else workbook[sheet_name]
 
-    # 如果未指定工作表名称，则使用第一个工作表
-    if sheet_name is None:
-        sheet = workbook.active
-    else:
-        sheet = workbook[sheet_name]
-
-    # 读取数据并存储到二维列表中
     data = []
     for row in sheet.iter_rows(values_only=True):
-        data.append(row)
+        processed_row = []
+        for cell_value in row:
+            if isinstance(cell_value, str):
+                cell_value = remove_zero_width_chars(cell_value).strip()
+            processed_row.append(cell_value)
+        data.append(processed_row)
 
     return data
 
