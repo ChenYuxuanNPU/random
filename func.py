@@ -1,5 +1,5 @@
-import sqlite3
 import re
+import sqlite3
 from datetime import datetime
 
 import openpyxl
@@ -202,3 +202,10 @@ def get_code_of_211() -> list[str]:
             '10271', '10626', '10022', '10759', '10184', '10010', '10045', '10307', '10316', '10225', '10043', '10126',
             '10026', '10755', '10224', '10749', '10425', '10062', '10694', '10743', '11414', '10491', '11413', '11415',
             '19635', '19414', '91030', '90026']
+
+
+def get_sheet_names(file_path: str):
+    wb = openpyxl.load_workbook(file_path, read_only=True)
+    names = wb.sheetnames
+    wb.close()
+    return names
