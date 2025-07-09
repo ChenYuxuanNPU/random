@@ -150,7 +150,7 @@ def get_age_from_citizen_id(citizen_id: str, year: str = None, month: int = 9, d
             return -2
 
     except Exception as e:
-        print(text=f"{e}:{citizen_id}")
+        print(f"{e}:{citizen_id}")
         return -3
 
 
@@ -204,7 +204,7 @@ def get_code_of_211() -> list[str]:
             '19635', '19414', '91030', '90026']
 
 
-def get_sheet_names(file_path: str):
+def get_sheet_names(file_path: str) -> list:
     wb = openpyxl.load_workbook(file_path, read_only=True)
     names = wb.sheetnames
     wb.close()
