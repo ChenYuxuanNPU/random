@@ -2,10 +2,10 @@
 教师问卷结果统计
 """
 
-from func import *
 import copy
-
 import json
+
+from func import *
 
 # 读取JSON文件
 with open('answer_teacher.json', 'r', encoding='utf-8') as file:
@@ -160,7 +160,7 @@ for i in sum_stat.keys():
 print(output)
 save_excel(two_dimension_list=output, excel_name="output_teacher/合计表格")
 
-temp ={s:{} for s in ["广州市白云区同和中学", "广州市白云区东平学校"]}
+temp = {s: {} for s in ["广州市白云区同和中学", "广州市白云区东平学校"]}
 for school in ["广州市白云区同和中学", "广州市白云区东平学校"]:
     count = 1
     with open(rf"0416/{school}-教师.txt", "w", encoding='UTF-8') as f:
