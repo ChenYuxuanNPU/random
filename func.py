@@ -4,6 +4,7 @@ from datetime import datetime
 
 import openpyxl
 from dateutil.relativedelta import relativedelta
+from openpyxl.utils import get_column_letter
 
 
 def del_tuple_in_list(data: list) -> list:
@@ -91,7 +92,7 @@ def read_xlsx_to_list(file_path, sheet_name=None):
     return data
 
 
-def save_excel(two_dimension_list: list[list or tuple], excel_name: str = "output"):
+def save_excel(two_dimension_list: list[list | tuple], excel_name: str = "output"):
     # 读取 Excel 文件
     workbook = openpyxl.Workbook()
 
@@ -100,6 +101,21 @@ def save_excel(two_dimension_list: list[list or tuple], excel_name: str = "outpu
 
     for item in two_dimension_list:
         ws.append(item)
+
+    # 自动调整列宽
+    for column in ws.columns:
+        max_length = 0
+        column_letter = get_column_letter(column[0].column)  # 获取列字母
+
+        for cell in column:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                pass
+
+        adjusted_width = (max_length + 2) * 1.8  # 加一些缓冲空间
+        ws.column_dimensions[column_letter].width = adjusted_width
 
     workbook.save(f"{excel_name}.xlsx")
 
