@@ -225,3 +225,20 @@ def get_sheet_names(file_path: str) -> list:
     names = wb.sheetnames
     wb.close()
     return names
+
+
+def get_descending_rank(lst, value):
+    # 处理列表为空的情况
+    if not lst:
+        return None
+
+    # 降序排序列表
+    sorted_lst = sorted(lst, reverse=True)
+
+    # 获取值的排名（索引从1开始）
+    try:
+        rank = sorted_lst.index(value) + 1
+    except ValueError:
+        return -1  # 值不在列表中
+
+    return rank
