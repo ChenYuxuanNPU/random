@@ -45,7 +45,8 @@ for subject in subjects:
 
     output_1 = {item: [] for item in school_list}
     output_1_list = [
-        ["学校", "学片", "达到度", "后30%人数", "后30%占比（数值）", "后30%占比（文本）", "后30%占比排名", "是否后30%学校"]]
+        ["学校", "学片", "达到度", "后30%人数", "后30%占比（数值）", "后30%占比（文本）", "后30%占比排名", "是否后30%学校",
+         "平均分"]]
 
     for school in school_list:
         output_1[school].append(school[:3] if school[:3] != "钟落潭" else "钟落潭镇")
@@ -100,12 +101,17 @@ for subject in subjects:
         else:
             output_1[school].append("否")
 
+    for school in school_list:
+        output_1[school].append(round(sum(
+            item[subjects[subject]] for item in test_data if item[subjects[subject]] > 0 and item[2] == school) / len(
+            [item[subjects[subject]] for item in test_data if item[subjects[subject]] > 0 and item[2] == school]), 2))
+
     for key, value in output_1.items():
         output_1_list.append([key] + [item for item in value])
 
     output_1_list = [output_1_list[0]] + sorted(output_1_list[1:], key=lambda x: x[6])
 
-    # save_excel(two_dimension_list=output_1_list, excel_name=f'output/{subject}学校数据')
+    save_excel(two_dimension_list=output_1_list, excel_name=f'output/{subject}学校数据')
 
     output_2 = [["学号", "姓名", "学校", "片镇", f"{subject}成绩", "30%临界成绩"]]
 
@@ -115,7 +121,7 @@ for subject in subjects:
 
     output_2 = [output_2[0]] + sorted(output_2[1:], key=lambda x: (x[3], x[2], x[4]))
 
-    # save_excel(two_dimension_list=output_2, excel_name=f"output/{subject}考生列表")
+    save_excel(two_dimension_list=output_2, excel_name=f"output/{subject}考生列表")
 
 for subject in subjects:
     district_avg = sum([item[subjects[subject]] for item in test_data if item[subjects[subject]] > 0]) / len(
