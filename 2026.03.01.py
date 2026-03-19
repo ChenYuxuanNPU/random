@@ -1,7 +1,9 @@
+from collections import Counter
+
 from func import *
 
-result_grade_8 = read_xlsx_to_list(file_path=fr"2026.02.28/八年级.xlsx")[1:]
-# 八年级：考号，选择题分值，选择题情况，英文打字，中文打字，总分，学片
+result_grade_8 = read_xlsx_to_list(file_path=fr"2026.03.01/八年级.xlsx")[1:]
+# 七年级：考号，选择题分值，选择题情况，英文打字，中文打字，Windows分值，Windows情况，总分，学片
 
 school_id_dict = dict({
     '106': '广师大实中', '广师大实中': '106', '105': '江村中学', '江村中学': '105',
@@ -48,12 +50,159 @@ school_id_dict = dict({
 })
 
 check = []
-
 ans_grade_8 = "C,A,A,D,C,C,B,C,B,C,A,D,C,B,B,B,B,B,B,B,B,C,C,C,B,D,C,B,A,D,B,C,C,C,C,A,A,B,A,C,".split(",")[:-1]
 
+result = {}
 
-for i in range(len(result_grade_8)):
-    school_name = school_id_dict.get(str(result_grade_8[i][0])[2:5], "我草")
+# 这里统计所有选择题的正确率
+choice_result = []
+for i in range(len(ans_grade_8)):
+    correct_ans = ans_grade_8[i]
+    temp = []
 
-    result_grade_8[i].append(school_name)
+    for item in result_grade_8:
+        #  school_name = school_id_dict.get(str(result_grade_8[i][0])[2:5], "我草")
+        temp.append(item[2].split(",")[:-1][i])
 
+    choice_result.append(f"{Counter(temp)[correct_ans] / len(result_grade_8) * 100:.2f}%")
+
+for i, k in enumerate(choice_result):
+    print(fr"第{i + 1}题正确率：{k}")
+
+print("")
+print(fr"全区选择题均分：{sum(int(item[1]) for item in result_grade_8) / len(result_grade_8):.2f}")
+print("")
+for area in ["新市", "永平", "石井", "江高", "人和", "太和", "钟落潭", ]:
+    print(
+        fr"{area}选择题均分：{sum(int(item[1]) for item in result_grade_8 if item[6] == area) / sum(1 for item in result_grade_8 if item[6] == area):.2f}")
+
+print("")
+print(fr"全区英文打字均分：{sum(float(item[3]) for item in result_grade_8) / len(result_grade_8):.2f}")
+print("")
+for area in ["新市", "永平", "石井", "江高", "人和", "太和", "钟落潭", ]:
+    print(
+        fr"{area}英文打字均分：{sum(float(item[3]) for item in result_grade_8 if item[6] == area) / sum(1 for item in result_grade_8 if item[6] == area):.2f}")
+
+print("")
+print(fr"全区中文打字均分：{sum(float(item[4]) for item in result_grade_8) / len(result_grade_8):.2f}")
+print("")
+for area in ["新市", "永平", "石井", "江高", "人和", "太和", "钟落潭", ]:
+    print(
+        fr"{area}中文打字均分：{sum(float(item[4]) for item in result_grade_8 if item[6] == area) / sum(1 for item in result_grade_8 if item[6] == area):.2f}")
+
+# 统计打字前几和后几的学校
+print("")
+num = 5
+output = {}
+for item in result_grade_8:
+    school_name = school_id_dict.get(str(item[0])[2:5], "我草")
+    if school_name not in output.keys():
+        output[school_name] = {
+            "英文打字成绩": [float(item[3])],
+            "英文打字均分": [],
+            "英文打字0分数": 0,
+            "英文打字0分占比": 0,
+            "中文打字成绩": [float(item[4])],
+            "中文打字均分": [],
+            "中文打字0分数": 0,
+            "中文打字0分占比": 0,
+        }
+    else:
+        output[school_name]["英文打字成绩"].append(float(item[3]))
+        output[school_name]["中文打字成绩"].append(float(item[4]))
+
+    if str(item[3]) == "0":
+        output[school_name]["英文打字0分数"] += 1
+    if str(item[4]) == "0":
+        output[school_name]["中文打字0分数"] += 1
+
+for key in output.keys():
+    output[key]["英文打字均分"] = sum(output[key]["英文打字成绩"]) / len(output[key]["英文打字成绩"])
+    output[key]["中文打字均分"] = sum(output[key]["中文打字成绩"]) / len(output[key]["中文打字成绩"])
+    output[key]["英文打字0分占比"] = output[key]["英文打字0分数"] / len(output[key]["英文打字成绩"])
+    output[key]["中文打字0分占比"] = output[key]["中文打字0分数"] / len(output[key]["中文打字成绩"])
+
+sorted_schools_chn = sorted(
+    output.items(),
+    key=lambda x: x[1]["英文打字均分"],  # 按均分排序
+    reverse=True  # 从高到低
+)
+print(f"===== 英文打字均分 前{num}名 =====")
+for school, info in sorted_schools_chn[:num]:
+    print(f"{school}：{info['英文打字均分']:.1f} 分")
+
+# 输出后 N 名
+print(f"\n===== 英文打字均分 后{num}名 =====")
+for school, info in sorted_schools_chn[-num:]:
+    print(f"{school}：{info['英文打字均分']:.1f} 分")
+
+sorted_schools_chn = sorted(
+    output.items(),
+    key=lambda x: x[1]["中文打字均分"],  # 按均分排序
+    reverse=True  # 从高到低
+)
+print(f"===== 中文打字均分 前{num}名 =====")
+for school, info in sorted_schools_chn[:num]:
+    print(f"{school}：{info['中文打字均分']:.1f} 分")
+
+# 输出后 N 名
+print(f"\n===== 中文打字均分 后{num}名 =====")
+for school, info in sorted_schools_chn[-num:]:
+    print(f"{school}：{info['中文打字均分']:.1f} 分")
+
+sorted_schools_eng = sorted(
+    output.items(),
+    key=lambda x: x[1]["英文打字0分占比"],  # 按均分排序
+    reverse=True  # 从高到低
+)
+
+print("")
+print(f"===== 英文打字0分率 前{num}名 =====")
+for school, info in sorted_schools_eng[:num]:
+    print(f"{school}：{info['英文打字0分占比'] * 100:.2f}%")
+
+sorted_schools_chn = sorted(
+    output.items(),
+    key=lambda x: x[1]["中文打字0分占比"],  # 按均分排序
+    reverse=True  # 从高到低
+)
+
+print("")
+print(f"===== 中文打字0分率 前{num}名 =====")
+for school, info in sorted_schools_chn[:num]:
+    print(f"{school}：{info['中文打字0分占比'] * 100:.2f}%")
+
+# 统计某几题正确率前几的学校
+print("")
+no = 5
+std_answer = ans_grade_8[no - 1]
+output_1 = {}
+for item in result_grade_8:
+    school_name = school_id_dict.get(str(item[0])[2:5], "我草")
+    if school_name not in output_1.keys():
+        output_1[school_name] = {
+            f"第{no}题答案列": [item[2].split(",")[no - 1]],
+            f"第{no}题正确率": 0
+        }
+    else:
+        output_1[school_name][f"第{no}题答案列"].append(item[2].split(",")[no - 1])
+
+for key in output_1.keys():
+    output_1[key][f"第{no}题正确率"] = Counter(output_1[key][f"第{no}题答案列"])[std_answer] / len(
+        output_1[key][f"第{no}题答案列"])
+
+sorted_schools = sorted(
+    output_1.items(),
+    key=lambda x: x[1][f"第{no}题正确率"],  # 按均分排序
+    reverse=True  # 从高到低
+)
+
+# 输出前 N 名
+print(f"===== 第{no}题正确率 前{5}名 =====")
+for school, info in sorted_schools[:5]:
+    print(f"{school}：{info[f'第{no}题正确率'] * 100:.2f}%")
+
+# 输出后 N 名
+print(f"\n===== 第{no}题正确率 后{5}名 =====")
+for school, info in sorted_schools[-5:]:
+    print(f"{school}：{info[f'第{no}题正确率'] * 100:.2f}%")
