@@ -1,10 +1,16 @@
+"""
+用于统计我区2025年师德考核提交结果
+"""
+
 from func import *
 
-data = read_xlsx_to_list(file_path=fr"2026.03.16/1.xlsx")
+data = read_xlsx_to_list(file_path=fr"output.xlsx")
 
-real_data = read_xlsx_to_list(file_path=fr"2026.03.16/人次.xlsx")
+data = [[str(element) for element in row] for row in data]
 
-id_list = [item[3] for item in real_data]
+real_data = read_xlsx_to_list(file_path=fr"2026.03.16/在编人员.xlsx")
+
+id_list = [str(item[3]) for item in real_data]
 
 check = {}
 
