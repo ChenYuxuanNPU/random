@@ -4,7 +4,7 @@
 
 from func import *
 
-data = read_xlsx_to_list(file_path=fr"学生问卷/学生问卷.xlsx")
+data = read_xlsx_to_list(file_path=fr"2026.03.23 - 学生问卷/学生问卷.xlsx")
 
 for i in range(len(data)):
     for k in range(2, len(data[i])):
@@ -39,4 +39,4 @@ for i in range(1, len(output)):
     for k in range(2, len(output[i]), 2):
         output[i][k] = f"{round(output[i][k - 1] / len(data[1:]) * 100, 2)}%"
 
-save_excel(output, "学生问卷/学生问卷统计结果")
+save_excel(output, "2026.03.23 - 学生问卷/学生问卷统计结果")
