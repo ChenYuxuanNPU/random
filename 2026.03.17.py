@@ -12,10 +12,10 @@ from func import *
 # 检查所有直管单位和片镇定期奖励是否超过指标数
 limit_dict = {}
 
-for key, value in read_xlsx_to_list(file_path=fr"2026.03.17/指标分配.xlsx"):
+for key, value in read_xlsx_to_list(file_path=fr"2026.03.17 - 定期奖励/指标分配.xlsx"):
     limit_dict[key] = value
 
-data = read_xlsx_to_list(file_path=fr"2026.03.17/1.xlsx")
+data = read_xlsx_to_list(file_path=fr"2026.03.17 - 定期奖励/1.xlsx")
 
 high_school_data = [item[5] for item in data if item[1] == "直管"]
 high_school_counter = Counter(high_school_data)
@@ -42,9 +42,9 @@ for key in area_counter.keys():
         print(fr"{key}学片指标满足")
 
 # 检查所有定期奖励人员是否师德考核合格及以上
-id_list = [item[3] for item in read_xlsx_to_list(file_path=fr"2026.03.17/1.xlsx")]  # 读取所有嘉奖的身份证
+id_list = [item[3] for item in read_xlsx_to_list(file_path=fr"2026.03.17 - 定期奖励/1.xlsx")]  # 读取所有嘉奖的身份证
 check_moral_dict = {item[4]: item[9] for item in
-                    read_xlsx_to_list(file_path=fr"2026.03.16/1.xlsx")}  # 读取所有师德考核的结果，首项为身份证，次项为考核结果
+                    read_xlsx_to_list(file_path=fr"2026.03.16 - 师德考核/1.xlsx")}  # 读取所有师德考核的结果，首项为身份证，次项为考核结果
 
 for item in data:
     if check_moral_dict.get(item[3], "") not in ["合格", "优秀"]:
